@@ -45,11 +45,14 @@ public class shortestJobFirst implements Comparable<shortestJobFirst> {
         });
         ArrayList<shortestJobFirst> sub=new ArrayList<>();
         int totalTime=0;
+        int waitTime=0;
+        int actualWaitTime=0;
 
 
-        i=0;
+
+        boolean first=true;
         while(true){
-            //int j=0;
+
             while(main.size()!=0&&(main.get(0).at<=totalTime)){
                 sub.add(main.remove(0));
             }
@@ -60,9 +63,19 @@ public class shortestJobFirst implements Comparable<shortestJobFirst> {
                     return o1.bt-o2.bt;
                 }
             });
-            totalTime+=sub.get(0).bt;
+            shortestJobFirst element=sub.get(0);
+            totalTime+=element.bt;
+            if(first==true){
+                first=false;
+
+            }else{
+               actualWaitTime=waitTime-element.at;
+            }
            // main.remove(sub.get(0));
-            System.out.println(sub.remove(0).toString());
+            System.out.print(sub.remove(0).toString());
+            System.out.println("  Waiting time:"+actualWaitTime+"  TurnaroundTime:"+(actualWaitTime+element.bt));
+            waitTime+=element.bt;
+
             if(main.size()==0&&sub.size()==0)
                 break;
 

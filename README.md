@@ -1,2 +1,2 @@
 Operating Systems Algorithms
-Ths repository contains CPU scheduling and memory management algorithms 
+This repository mainly contains CPU scheduling and memory management algorithms. 
